@@ -1,0 +1,33 @@
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+    # Bundles from the default repo (robbyrussell's oh-my-zsh)
+    git
+    cp
+    sudo
+    svn
+    docker
+    rsync
+    wd
+    command-not-found
+
+    # Syntax highlighting bundle.
+    zsh-users/zsh-syntax-highlighting
+
+    # Fish-like auto suggestions
+    zsh-users/zsh-autosuggestions
+
+    # Extra zsh completions
+    zsh-users/zsh-completions
+
+    # My config
+    synchronized/sd-config
+
+    ${HOME}/.dotfiles/zsh-plugins/sd-init-env --no-local-clone
+
+EOBUNDLES
+
+antigen theme fox
+# nanotech
+
+antigen apply
