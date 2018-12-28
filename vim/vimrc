@@ -286,18 +286,18 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 " ----------------------------------------------------------------------------
 
 " Auto detect filetype
-autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
-autocmd BufRead,BufNewFile *.lytex set filetype=tex
-autocmd BufRead,BufNewFile ~/dotfiles/ssh/config set filetype=sshconfig
-autocmd BufRead,BufNewFile *.git/config,.gitconfig,.gitmodules,gitconfig set ft=gitconfig
+autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
+autocmd BufNewFile,BufRead *.lytex set filetype=tex
+autocmd BufNewFile,BufRead ~/dotfiles/ssh/config set filetype=sshconfig
+autocmd BufNewFile,BufRead *.git/config,.gitconfig,.gitmodules,gitconfig set ft=gitconfig
 autocmd BufNewFile,BufRead *.html set filetype=htmldjango
 autocmd BufNewFile,BufRead .eslintrc set filetype=javascript
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
-autocmd BufRead,BufNewFile *.py setlocal foldmethod=indent
+autocmd BufNewFile,BufRead *.py setlocal foldmethod=indent
 
 " Override what is done in /vim/bundle/scss-syntax.vim/ftdetect/scss.vim
 " This should prevent duplicate snippets
-autocmd BufRead,BufNewFile *.scss set filetype=scss
+autocmd BufNewFile,BufRead *.scss set filetype=scss
 
 " }}}-------------------------------------------------------------------------
 "   Custom mappings                                                       {{{
