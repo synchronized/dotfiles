@@ -64,7 +64,7 @@ set wrap                    " Soft wrap at the window width
 set linebreak               " Break the line on words
 set textwidth=79            " Break lines at just under 80 characters
 if exists('+colorcolumn')
-  set colorcolumn=+1        " Highlight the column after `textwidth`
+"  set colorcolumn=+1        " Highlight the column after `textwidth`
 endif
 set numberwidth=4           " Width of the line number column
 
@@ -262,8 +262,24 @@ endif
 nnoremap <F5> :UndotreeToggle<CR>
 
 " Jedi Python Autocomplete
-let g:jedi#use_tabs_not_buffers = 0 " Jedi needs you to unset this default to get to splits
+" Jedi needs you to unset this default to get to splits
+let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "bottom"
+
+" vim-jsbeautify
+".vimrc
+" map <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
 " }}}-------------------------------------------------------------------------
 "   Custom filetypes                                                      {{{
