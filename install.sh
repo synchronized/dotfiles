@@ -22,3 +22,11 @@ sd_install_link globalrc .globalrc
 
 sd_install_link vim .vim
 sd_install_link editorconfig .editorconfig
+
+if [ ! -d "${HOME}/.fzf" ]
+then
+    echo "Install junegunn/fzf"
+    git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf
+    bash ~/.fzf/install --key-bindings --completion --no-update-rc
+fi
+
