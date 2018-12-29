@@ -3,11 +3,14 @@
 set -u
 
 version=0.0.1
+# 0: not install
+# 1: install
+# 2: ask before install
 opt_dotfiles=2
 opt_install_fzf=1
 opt_install_nvm=2
 opt_install_gvm=2
-opt_install_autoenv=2
+opt_install_autoenv=0
 
 shells="bash zsh fish"
 prefix='~/.fzf'
