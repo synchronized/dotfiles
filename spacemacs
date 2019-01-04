@@ -31,16 +31,20 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     lsp
      vimscript
+     ansible
+     windows-scripts
+     csv
+     markdown
+     lua
      (go :variables
          go-tab-width 4
          gofmt-command "goimports"
          go-use-gometalinter t
          )
-     ruby
-     python
-     graphviz
-     markdown
+     ;; graphviz
+     ;; markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -65,17 +69,14 @@ values."
      sql
      yaml
      ;; c-c++
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
-     php
+     ;; php
      html
-     ;; python
+     python
      java
-     (javascript :variables tern-command '("node" "/usr/local/bin/tern"))
+     (javascript :variables tern-command '("node" "/home/sunday/.nvm/versions/node/v8.15.0/bin/tern"))
      plantuml
-     (ranger :variables
-             ranger-show-preview t)
+     ;; (ranger :variables
+     ;;        ranger-show-preview t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -129,6 +130,9 @@ values."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
+   ;; is 'spacemacs, 'all-the-icons, 'custom, 'vim-powerline or 'vanilla or a list with `car'
+   ;; one of the previous values and properties one of the following: `:separator' or `:separator-scale'
+   dotspacemacs-mode-line-theme 'spacemacs
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -159,8 +163,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -319,10 +323,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   (setq-default powerline-default-separator 'arrow)
-  (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
+  (setq configuration-layer-elpa-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   ;; magit configure
   (setq-default git-magit-status-fullscreen t)
@@ -351,11 +355,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; plantuml jar file setting
   (setq plantuml-jar-path (expand-file-name "/home/sunday/install/linux/plantuml.jar"))
-
-  ;; Bind clang-format-buffer to tab on the c++-mode only:
-  (add-hook 'c++-mode-hook 'clang-format-bindings)
-  (defun clang-format-bindings ()
-    (define-key c++-mode-map [tab] 'clang-format-buffer))
   )
 
 (defun dotspacemacs/user-config ()
@@ -437,7 +436,7 @@ CREATED: %U" :empty-lines 1)
       "* %?" :empty-lines 1))))
  '(package-selected-packages
    (quote
-    (youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -449,3 +448,56 @@ CREATED: %U" :empty-lines 1)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-custom-commands
+   (quote
+    (("w" . "任务安排")
+     ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
+     ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
+     ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
+     ("p" . "项目安排")
+     ("pa" tags-todo "PROJECT+WORK")
+     ("W" "Weekly Review"
+      ((stuck "")
+       (tags-todo "PROJECT"))))))
+ '(org-agenda-files (quote ("~/org/gtd.org" "~/org/notes.org")))
+ '(org-capture-templates
+   (quote
+    (("t" "Todo" entry
+      (file+headline "~/org/gtd.org" "workspace")
+      "* TODO %?
+%i
+CREATED: %U" :empty-lines 1)
+     ("n" "notes" entry
+      (file+headline "~/org/notes.org" "Quick notes")
+      "* %?
+%i
+CREATED: %U" :empty-lines 1)
+     ("l" "linux" entry
+      (file+headline "~/org/linux.org" "linux")
+      "* %?
+%i
+CREATED: %U" :empty-lines 1)
+     ("j" "Journal" entry
+      (file+datetree "~/org/journal.org")
+      "* %?" :empty-lines 1))))
+ '(package-selected-packages
+   (quote
+    (yasnippet-snippets writeroom-mode visual-fill-column symon string-inflection spaceline-all-the-icons prettier-js pippel pipenv password-generator overseer org-brain mvn meghanada maven-test-mode magit-svn json-navigator hierarchy importmagic epc ctable concurrent deferred impatient-mode helm-xref helm-purpose window-purpose imenu-list helm-org-rifle helm-git-grep groovy-mode groovy-imports pcache gradle-mode godoctor go-tag go-rename go-impl go-gen-test go-fill-struct gitignore-templates evil-org evil-lion evil-goggles evil-cleverparens paredit ensime sbt-mode scala-mode editorconfig doom-modeline eldoc-eval shrink-path all-the-icons memoize counsel-projectile counsel swiper ivy company-lua centered-cursor-mode dotenv-mode vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+)
