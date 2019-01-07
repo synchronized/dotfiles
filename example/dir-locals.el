@@ -4,6 +4,6 @@
 ((go-mode
   ((eval . (progn
              (setq process-environment (copy-sequence process-environment))
-             (setenv "GOPATH" "/d/sunday/workspace/bysvn/moviestar/develop/code/Server"))))
+             (setenv "GOPATH" "/path/of/golang/project"))))
   (go-backend . go-mode))
  )
