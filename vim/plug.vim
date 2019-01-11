@@ -121,6 +121,8 @@ Plug 'vim-scripts/molokai'
 
 Plug 'maksimr/vim-jsbeautify'
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Other plugins require curl
 if executable("curl")
 
