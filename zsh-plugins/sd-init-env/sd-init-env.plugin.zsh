@@ -13,6 +13,7 @@
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # autoenv configuration
+AUTOENV_ENABLE_LEAVE=ON
 [[ -f "${HOME}/.autoenv/activate.sh" ]] && source "${HOME}/.autoenv/activate.sh"
 
 # alias ping='prettyping --nolegend'
