@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     lsp
      vimscript
      ansible
      windows-scripts
@@ -73,6 +72,7 @@ values."
      java
      (javascript :variables tern-command '("node" "/home/sunday/.nvm/versions/node/v8.15.0/bin/tern"))
      plantuml
+     fzf
      ;; (ranger :variables
      ;;        ranger-show-preview t)
      )
@@ -321,7 +321,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   (setq-default powerline-default-separator 'arrow)
-  (setq configuration-layer-elpa-archives
+  (setq configuration-layer--elpa-archives
       '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
         ("org-cn"   . "http://elpa.emacs-china.org/org/")
         ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
@@ -366,33 +366,26 @@ you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (add-hook 'php-mode-hook 'flycheck-mode)
   (add-hook 'org-mode-hook 'org-indent-mode)
-   (evil-leader/set-key
-     "oys" 'youdao-dictionary-search-at-point)
-   (evil-leader/set-key
-     "oyi" 'youdao-dictionary-search-from-input)
-   (evil-leader/set-key
-     "oyv" 'youdao-dictionary-play-voice-at-point)
-
-   (evil-leader/set-key
+  (evil-leader/set-key
      "odw" 'wdired-change-to-wdired-mode)
 
-   ;; use apsell as ispell backend
-   (setq-default ispell-program-name "aspell")
-   ;; use American English as ispell default dictionary
-   (ispell-change-dictionary "american" t)
+  ;; use apsell as ispell backend
+  (setq-default ispell-program-name "aspell")
+  ;; use American English as ispell default dictionary
+  (ispell-change-dictionary "american" t)
 
 
-   (setq
-    eclim-eclipse-dirs '("~/opt/eclipse/jee-oxygen/eclipse")
-    eclim-executable "~/opt/eclipse/jee-oxygen/eclipse/eclim")
+  (setq
+   eclim-eclipse-dirs '("~/opt/eclipse/jee-oxygen/eclipse")
+   eclim-executable "~/opt/eclipse/jee-oxygen/eclipse/eclim")
 
-   (setq
-    ;; Use another eclimd executable
-    eclimd-executable "~/opt/eclipse/jee-oxygen/eclipse/eclimd"
-    ;; Specify the workspace to use by default
-    eclimd-default-workspace "/home/sunday/workspace/eclipse"
-    ;; Whether or not to block emacs until eclimd is ready
-    eclimd-wait-for-process t)
+  (setq
+   ;; Use another eclimd executable
+   eclimd-executable "~/opt/eclipse/jee-oxygen/eclipse/eclimd"
+   ;; Specify the workspace to use by default
+   eclimd-default-workspace "/home/sunday/workspace/eclipse"
+   ;; Whether or not to block emacs until eclimd is ready
+   eclimd-wait-for-process t)
   )
 
 (custom-set-variables
