@@ -1,21 +1,21 @@
 [user]
-	name = sundayH
-	email = synchronized@yeah.net
+  name = sunday
+  email = synchronized@yeah.net
 [push]
-	default = simple
+  default = simple
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
 [merge]
-    tool = meld
-	renormalize = true
+  tool = meld
+  renormalize = true
 [branch]
-    autosetuprebase = always
+  autosetuprebase = always
 [pull]
-	rebase = true
+  rebase = true
 [core]
-	safecrlf = warn
-	autocrlf = input
+  safecrlf = warn
+  autocrlf = input
 [diff]
-	tool = meld
+  tool = meld
 [http]
-	postBuffer = 524288000
+  postBuffer = 524288000
