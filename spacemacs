@@ -71,7 +71,7 @@ values."
      html
      python
      java
-     (javascript :variables tern-command '("node" "/home/sunday/.nvm/versions/node/v8.15.0/bin/tern"))
+     javascript
      plantuml
      fzf
      ;; (ranger :variables
