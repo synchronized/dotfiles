@@ -81,7 +81,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      editorconfig)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -332,28 +333,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default git-enable-magit-svn-plugin t)
 
   ;; Bind clang-format-region to C-M-tab in all modes:
-  (global-set-key [C-M-tab] 'clang-format-region)
+  ;; (global-set-key [C-M-tab] 'clang-format-region)
   ;; Bind clang-format-buffer to tab on the c++-mode only:
-  (add-hook 'c++-mode-hook 'clang-format-bindings)
-  (defun clang-format-bindings ()
-    (define-key c++-mode-map [tab] 'clang-format-buffer))
-
-  (defun my-setup-indent ()
-    ;; java/c/c++
-    (setq c-basic-offset 4)
-    ;; web development
-    (setq coffee-tab-width 2) ; coffeescript
-    (setq javascript-indent-level 2) ; javascript-mode
-    (setq js-indent-level 2) ; js-mode
-    (setq js2-basic-offset 2) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-    (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-    (setq web-mode-css-indent-offset 2) ; web-mode, css in html file
-    (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
-    (setq css-indent-offset 2) ; css-mode
-    )
+  ;; (add-hook 'c++-mode-hook 'clang-format-bindings)
+  ;; (defun clang-format-bindings ()
+  ;;   (define-key c++-mode-map [tab] 'clang-format-buffer))
 
   ;; plantuml jar file setting
-  (setq plantuml-jar-path (expand-file-name "/home/sunday/install/linux/plantuml.jar"))
+  ;; (setq plantuml-jar-path (expand-file-name "/home/sunday/install/linux/plantuml.jar"))
   )
 
 (defun dotspacemacs/user-config ()
@@ -363,7 +350,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (my-setup-indent)
   (add-hook 'org-mode-hook 'org-indent-mode)
   (evil-leader/set-key
      "odw" 'wdired-change-to-wdired-mode)
@@ -373,18 +359,19 @@ you should place your code here."
   ;; use American English as ispell default dictionary
   (ispell-change-dictionary "american" t)
 
+  ;;(setq
+  ;; eclim-eclipse-dirs '("~/opt/eclipse/jee-oxygen/eclipse")
+  ;; eclim-executable "~/opt/eclipse/jee-oxygen/eclipse/eclim")
 
-  (setq
-   eclim-eclipse-dirs '("~/opt/eclipse/jee-oxygen/eclipse")
-   eclim-executable "~/opt/eclipse/jee-oxygen/eclipse/eclim")
+  ;;(setq
+  ;; ;; Use another eclimd executable
+  ;; eclimd-executable "~/opt/eclipse/jee-oxygen/eclipse/eclimd"
+  ;; ;; Specify the workspace to use by default
+  ;; eclimd-default-workspace "/home/sunday/workspace/eclipse"
+  ;; ;; Whether or not to block emacs until eclimd is ready
+  ;; eclimd-wait-for-process t)
 
-  (setq
-   ;; Use another eclimd executable
-   eclimd-executable "~/opt/eclipse/jee-oxygen/eclipse/eclimd"
-   ;; Specify the workspace to use by default
-   eclimd-default-workspace "/home/sunday/workspace/eclipse"
-   ;; Whether or not to block emacs until eclimd is ready
-   eclimd-wait-for-process t)
+  (editorconfig-mode 1)
   )
 
 (custom-set-variables
@@ -426,7 +413,7 @@ CREATED: %U" :empty-lines 1)
       "* %?" :empty-lines 1))))
  '(package-selected-packages
    (quote
-    (slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (fzf editorconfig slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
