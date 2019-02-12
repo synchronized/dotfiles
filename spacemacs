@@ -31,51 +31,59 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     vimscript
-     ansible
-     windows-scripts
-     csv
-     markdown
-     lua
-     (go :variables
-         go-tab-width 4
-         gofmt-command "goimports"
-         go-use-gometalinter t
-         )
-     ;; graphviz
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+
      helm
+     gtags
      auto-completion
-     ;; better-defaults
-     common-lisp
+     git
+
+     (spell-checking :variables spell-checking-enable-by-default nil)
+     (syntax-checking :variables syntax-checking-enable-by-default nil)
+
+     yaml
+     org
+     sql
+
+     ;; php
+     ;; c-c++
+     csv
+     lua
+     html
+     python
+     java
+     javascript
+     ansible
+     (markdown :variables markdown-live-preview-engine 'vmd)
+     vimscript
      emacs-lisp
+     common-lisp
+     windows-scripts
+     (go :variables
+         go-tab-width 4
+         gofmt-command "goimports"
+         go-use-gometalinter t
+         )
+     latex
+
+     plantuml
+     fzf
+
+     ;; graphviz
+     ;; better-defaults
      ;; (chinese :variables
      ;;         chinese-enable-youdao-dict t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     (spell-checking :variables spell-checking-enable-by-default nil)
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
      ;; version-control
-     org
-     gtags
-     git
-     sql
-     yaml
-     ;; c-c++
-     ;; php
-     html
-     python
-     java
-     javascript
-     plantuml
-     fzf
      ;; (ranger :variables
      ;;        ranger-show-preview t)
+
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -413,7 +421,7 @@ CREATED: %U" :empty-lines 1)
       "* %?" :empty-lines 1))))
  '(package-selected-packages
    (quote
-    (fzf editorconfig slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (auctex-latexmk company-auctex auctex fzf editorconfig slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
