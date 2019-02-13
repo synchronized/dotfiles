@@ -5,6 +5,7 @@
   editor = vim
   safecrlf = warn
   autocrlf = input
+	pager = less -x1,5
 [push]
   default = simple
 [pull]
