@@ -3,14 +3,16 @@
 set -u
 
 version=0.0.1
-# 0: not install
-# 1: install
-# 2: ask before install
+# Installaion default mode
+#   0: not install
+#   1: install
+#   2: ask before install
 opt_dotfiles=2
 opt_install_fzf=1
 opt_install_nvm=2
+opt_install_nvm_pkg=2
 opt_install_gvm=2
-opt_install_autoenv=0
+opt_install_autoenv=2
 
 shells="bash zsh fish"
 prefix='~/.fzf'
@@ -28,6 +30,8 @@ usage: $0 [OPTIONS]
     --[no-]dot-files        Enable/disable link dotfiles
     --[no-]install-fzf      Enable/disable the installation fzf
     --[no-]install-nvm      Enable/disable the installation nvm
+    --[no-]install-nvm-pkg  Enable/disable the installation nvm packages
+                            js-beautify, eslint, tern, vmd
     --[no-]install-gvm      Enable/disable the installation gvm
     --[no-]install-autoenv  Enable/disable the installation autoenv
 EOF
@@ -43,6 +47,7 @@ for opt in "$@"; do
             opt_dotfiles=1
             opt_install_fzf=1
             opt_install_nvm=1
+            opt_install_nvm_pkg=1
             opt_install_gvm=1
             opt_install_autoenv=1
             ;;
@@ -52,6 +57,8 @@ for opt in "$@"; do
         --no-install-fzf)      opt_install_fzf=0      ;;
         --install-nvm)         opt_install_nvm=1      ;;
         --no-install-nvm)      opt_install_nvm=0      ;;
+        --install-nvm-pkg)     opt_install_nvm_pkg=1  ;;
+        --no-install-nvm-pkg)  opt_install_nvm_pkg=0  ;;
         --install-gvm)         opt_install_gvm=1      ;;
         --no-install-gvm)      opt_install_gvm=0      ;;
         --install-autoenv)     opt_install_autoenv=1  ;;
@@ -64,6 +71,7 @@ for opt in "$@"; do
     esac
 done
 
+# @param string msg($1)   when query user show message
 sd_ask() {
     while true; do
         read -p "$1 ([y]/n) " -r
@@ -74,6 +82,19 @@ sd_ask() {
             return 0
         fi
     done
+}
+
+# @param string var($1)   current flag value
+# @param string msg($2)   when query user show message
+sd_ask_var() {
+    local tmp_flag=$1
+    local tmp_msg="$2"
+    if [ $tmp_flag -eq 2 ]; then
+        echo
+        sd_ask "$tmp_msg"
+        tmp_flag=$?
+    fi
+    return $tmp_flag
 }
 
 function sd_create_link() {
@@ -93,11 +114,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 CURR_PATH=$(pwd)
 # CURR_PATH=$(cd `dirname $0`; pwd)
 
-if [ $opt_dotfiles -eq 2 ]; then
-    echo
-    sd_ask "Do you want to link dotfiles?"
-    opt_dotfiles=$?
-fi
+# Install dotfiles
+sd_ask_var $opt_dotfiles "Do you want to link dotfiles?"
+opt_dotfiles=$?
 
 # Link dotfiles
 echo "Create link for dotfiles ..."
@@ -116,11 +135,8 @@ else
 fi
 
 # Install fzf
-if [ $opt_install_fzf -eq 2 ]; then
-    echo
-    sd_ask "Do you want to install fzf?"
-    opt_install_fzf=$?
-fi
+sd_ask_var $opt_install_fzf "Do you want to install fzf?"
+opt_install_fzf=$?
 if [ $opt_install_fzf -eq 1 ]; then
     echo "Install fzf ..."
     if [ ! -d "${HOME}/.fzf" ]; then
@@ -136,11 +152,8 @@ else
 fi
 
 # Install nvm
-if [ $opt_install_nvm -eq 2 ]; then
-    echo
-    sd_ask "Do you want to install nvm?"
-    opt_install_nvm=$?
-fi
+sd_ask_var $opt_install_nvm "Do you want to install nvm?"
+opt_install_nvm=$?
 if [ $opt_install_nvm -eq 1 ]; then
     echo "Install nvm ..."
     export NVM_DIR="${HOME}/.nvm"
@@ -153,6 +166,7 @@ if [ $opt_install_nvm -eq 1 ]; then
         ) && \. "$NVM_DIR/nvm.sh"
         # Install default lts
         nvm install --lts=Carbon
+        nvm alias default node
     else
         echo "    - Already exists"
     fi
@@ -160,12 +174,20 @@ else
     echo "    ~ Skipped"
 fi
 
-# Install gvm
-if [ $opt_install_gvm -eq 2 ]; then
-    echo
-    sd_ask "Do you want to install gvm?"
-    opt_install_gvm=$?
+# Install nvm-pkg
+sd_ask_var $opt_install_nvm_pkg "Do you want to install nvm-pkg(js-beautify eslint tern vmd)?"
+opt_install_nvm_pkg=$?
+if [ $opt_install_nvm_pkg -eq 1 ]; then
+    echo "Install nvm-pkg(js-beautify eslint tern vmd) ..."
+
+    npm install -g js-beautify eslint tern vmd
+else
+    echo "    ~ Skipped"
 fi
+
+# Install gvm
+sd_ask_var $opt_install_gvm "Do you want to install gvm?"
+opt_install_gvm=$?
 if [ $opt_install_gvm -eq 1 ]; then
     echo "Install gvm ..."
     if [ ! -d "${HOME}/.gvm" ]; then
@@ -178,11 +200,8 @@ else
 fi
 
 # Install autoenv
-if [ $opt_install_autoenv -eq 2 ]; then
-    echo
-    sd_ask "Do you want to install autoenv?"
-    opt_install_autoenv=$?
-fi
+sd_ask_var $opt_install_autoenv "Do you want to install autoenv?"
+opt_install_autoenv=$?
 if [ $opt_install_autoenv -eq 1 ]; then
     echo "Install autoenv ..."
     if [ ! -d "${HOME}/.autoenv" ]; then
