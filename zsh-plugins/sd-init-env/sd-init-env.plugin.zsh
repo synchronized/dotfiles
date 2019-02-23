@@ -21,3 +21,4 @@
 # alias
 # alias ping='prettyping --nolegend'
 alias emacs-prelude='emacs -q -l ~/.emacs.d-prelude/init.el'
+alias emacs-mytest='emacs -q -l ~/.emacs.d-mytest/init.el'

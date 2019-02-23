@@ -68,6 +68,9 @@ values."
          gofmt-command "goimports"
          go-use-gometalinter t
          )
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      latex
 
      plantuml
@@ -340,13 +343,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-magit-svn-plugin t)
 
-  ;; Bind clang-format-region to C-M-tab in all modes:
-  ;; (global-set-key [C-M-tab] 'clang-format-region)
-  ;; Bind clang-format-buffer to tab on the c++-mode only:
-  ;; (add-hook 'c++-mode-hook 'clang-format-bindings)
-  ;; (defun clang-format-bindings ()
-  ;;   (define-key c++-mode-map [tab] 'clang-format-buffer))
-
   ;; plantuml jar file setting
   ;; (setq plantuml-jar-path (expand-file-name "/home/sunday/install/linux/plantuml.jar"))
   )
@@ -366,6 +362,14 @@ you should place your code here."
   (setq-default ispell-program-name "aspell")
   ;; use American English as ispell default dictionary
   (ispell-change-dictionary "american" t)
+
+  ;; Bind clang-format-region to C-M-tab in all modes:
+  (global-set-key [C-M-tab] 'clang-format-region)
+  ;; Bind clang-format-buffer to tab on the c++-mode only:
+  (add-hook 'c++-mode-hook 'clang-format-bindings)
+  (defun clang-format-bindings ()
+    (define-key c++-mode-map [tab] 'clang-format-buffer))
+
 
   ;;(setq
   ;; eclim-eclipse-dirs '("~/opt/eclipse/jee-oxygen/eclipse")
@@ -421,7 +425,7 @@ CREATED: %U" :empty-lines 1)
       "* %?" :empty-lines 1))))
  '(package-selected-packages
    (quote
-    (auctex-latexmk company-auctex auctex fzf editorconfig slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (disaster company-c-headers cmake-mode clang-format auctex-latexmk company-auctex auctex fzf editorconfig slime-company slime common-lisp-snippets vimrc-mode dactyl-mode jinja2-mode company-ansible ansible-doc ansible treepy graphql csv-mode flyspell-correct pos-tip flycheck company auto-complete powerline spinner org-plus-contrib hydra parent-mode projectile pkg-info epl request gitignore-mode flx magit magit-popup git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight yasnippet bind-map bind-key packed f dash s helm avy helm-core popup async lua-mode powershell flycheck-gometalinter go-guru go-eldoc company-go go-mode yapfify rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger rake pyvenv pytest pyenv-mode py-isort pip-requirements org-category-capture alert log4e gntp org-mime minitest markdown-mode skewer-mode simple-httpd live-py-mode json-snatcher json-reformat multiple-cursors js2-mode hy-mode helm-pydoc haml-mode php-mode cython-mode web-completion-data dash-functional tern eclim company-anaconda chruby bundler inf-ruby anaconda-mode pythonic youdao-dictionary yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode popwin plantuml-mode phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav dumb-jump drupal-mode diminish define-word company-web company-tern company-statistics company-emacs-eclim column-enforce-mode coffee-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
