@@ -77,9 +77,8 @@ set foldlevelstart=20       " Open 20 levels of folding when I open a file
 set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 
 " Highlight tabs and trailing spaces
-" set listchars=tab:▸\ ,trail:•
-set listchars=trail:•
-set list                    " Make whitespace characters visible
+set listchars=tab:▸\ ,trail:•
+set nolist                  " Make whitespace characters visible
 
 " Splits
 set splitbelow              " Open new splits below
