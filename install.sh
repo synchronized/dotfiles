@@ -127,6 +127,7 @@ if [ $opt_dotfiles -eq 1 ]; then
     sd_create_link spacemacs .spacemacs
     sd_create_link gitconfig .gitconfig
     sd_create_link globalrc .globalrc
+    sd_create_link latexmkrc .latexmkrc
 
     sd_create_link vim .vim
     sd_create_link editorconfig .editorconfig
