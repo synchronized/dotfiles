@@ -9,7 +9,14 @@
 $pdf_mode = 1;
 
 # Commands to invoke latex, pdflatex
-$pdflatex = "xelatex -file-line-error --shell-escape -src-specials -synctex=1 -interaction=nonstopmode %O %S;cp %D %R.pdf";
+$pdflatex = join(" ",
+    "xelatex",
+    "-file-line-error",
+    "--shell-escape",
+    "-src-specials",
+    "-synctex=1",
+    "-interaction=nonstopmode %O %S;cp %D %R.pdf"
+);
 
 # Whether to use recorder option on latex/pdflatex
 $recorder = 1;
@@ -28,7 +35,32 @@ $recorder = 1;
 #     space separated extensions of files that are
 #     to be deleted when doing cleanup, beyond
 #     standard set
-$clean_ext = "synctex.gz acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls idx ilg ind ist lof log lot out run.xml toc dvi";
+$clean_ext = join(" ",
+    "acn ", 
+    "acr ",
+    "alg ",
+    "aux ",
+    "bbl ",
+    "bcf ",
+    "blg ",
+    "brf ",
+    "glg ",
+    "glo ",
+    "gls ",
+    "idx ",
+    "ilg ",
+    "ind ",
+    "ist ",
+    "lof ",
+    "log ",
+    "lot ",
+    "out ",
+    "toc ",
+    "dvi ",
+    "run.xml ",
+    "synctex.gz ",
+    "fdb_latexmk "
+);
 
 # 清理模式
 # No cleanup of nonessential LaTex-related files.
