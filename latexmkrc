@@ -40,7 +40,7 @@ $clean_ext = "synctex.gz acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls
  
 # Directory for output files.  
 # Cf. --output-directory of current (pdf)latex
-$out_dir = ".build";
+$out_dir = ".build-latexmk";
 
 # 指定生成PDF文件的文件名，可以与LaTeX主文件名不一致
 #$jobname = "Book";
