@@ -2,13 +2,15 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
     # Bundles from the default repo (robbyrussell's oh-my-zsh)
-    git
     cp
-    sudo
-    svn
-    docker
-    rsync
     wd
+    svn
+    git
+    sudo
+    rsync
+    docker
+    autoenv
+    autojump
     command-not-found
 
     # Syntax highlighting bundle.
