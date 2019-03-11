@@ -1,0 +1,7 @@
+#!/bin/bash
+/usr/sbin/service ssh start
+/usr/sbin/service privoxy start
+/usr/sbin/service supervisor start
+
+# 将E:/盘挂载到/data目录
+# /bin/mount -o rw,gid=1000,uid=1000,umask=22,fmask=11,metadata -t drvfs e: /data
