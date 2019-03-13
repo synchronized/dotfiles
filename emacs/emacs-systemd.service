@@ -5,7 +5,7 @@ Documentation=man:emacs(1) info:Emacs
 [Service]
 Type=forking
 ExecStart=/usr/bin/emacs --daemon
-ExecStop=/usr/bin/emacsclient --eval "(progn (setq kill-emacs-hook nil) (kill-emacs))"
+ExecStop=/usr/bin/emacsclient --eval "(progn (spacemacs/prompt-kill-emacs))"
 Restart=on-failure
 Environment=DISPLAY=:%i
 TimeoutStartSec=0

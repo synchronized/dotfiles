@@ -23,7 +23,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 #EMACSCLIENT=/opt/emacs23/bin/emacsclient
 EMACSCLIENT=`which emacsclient`
 
-EVALEXIT="(progn (kill-emacs))"
+EVALEXIT="(progn (spacemacs/prompt-kill-emacs))"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
