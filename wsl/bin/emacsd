@@ -10,6 +10,7 @@
 #change this
 #USERNAME=YourUserName
 USERNAME=`id sunday -un`
+USER_UID=`id sunday -u`
 eval USERHOME=~$USERNAME
 DESC="Run the emacs daemon."
 NAME=emacs
@@ -19,11 +20,12 @@ DAEMON=`which emacs`
 DAEMON_ARGS="--daemon"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
+SOCKET_FILE="/tmp/emacs${USER_UID}/server"
 #change this
 #EMACSCLIENT=/opt/emacs23/bin/emacsclient
 EMACSCLIENT=`which emacsclient`
 
-EVALEXIT="(progn (spacemacs/prompt-kill-emacs))"
+EVALEXIT="(progn (kill-emacs))"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -64,7 +66,8 @@ do_start()
 #
 do_stop()
 {
-    $EMACSCLIENT --eval "$EVALEXIT"
+    options="-s ${SOCKET_FILE}"
+    $EMACSCLIENT $options --eval "$EVALEXIT"
 	  # Return
 	  #   0 if daemon has been stopped
 	  #   1 if daemon was already stopped
