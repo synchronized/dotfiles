@@ -2,25 +2,21 @@
 
 root = true
 
-[**.js]
+[*]
+charset = utf-8
 indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+end_of_line = lf
+insert_final_newline = true
+
+[*.go]
+indent_style = tab
 indent_size = 4
 
-[**.json]
+[*.{js,html,css,json,jsx}]
 indent_style = space
-indent_size = 4
+indent_size = 2
 
-[**.jsx]
-e4x = true
-indent_style = space
-indent_size = 4
-
-[**.css]
-indent_style = space
-indent_size = 4
-
-[**.html]
-indent_style = space
-indent_size = 4
-max_char = 78
-brace_style = expand
+[Makefile]
+indent_style = tab
