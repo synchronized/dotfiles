@@ -42,8 +42,8 @@ values."
      auto-completion
      git
 
-     (spell-checking :variables spell-checking-enable-by-default nil)
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     ;; (spell-checking :variables spell-checking-enable-by-default nil)
+     ;; (syntax-checking :variables syntax-checking-enable-by-default nil)
 
      yaml
      org
@@ -53,10 +53,9 @@ values."
      ;; c-c++
      csv
      lua
-     html
      python
      java
-     javascript
+     react
      ansible
      (markdown :variables markdown-live-preview-engine 'vmd)
      vimscript
@@ -385,6 +384,15 @@ you should place your code here."
   ;; eclimd-default-workspace "/home/sunday/workspace/eclipse"
   ;; ;; Whether or not to block emacs until eclimd is ready
   ;; eclimd-wait-for-process t)
+
+  (defun sunday-js-mode-hook ()
+    (setq js2-basic-offset 2)
+    (setq js-indent-level 2)
+    (setq js2-include-node-externs t)
+    (setq js2-strict-missing-semi-warning nil))
+
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  (add-hook 'js2-mode-hook 'sunday-js-mode-hook)
 
   (editorconfig-mode 1)
   )
