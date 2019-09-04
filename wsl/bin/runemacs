@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -ex
 
 export DISPLAY=:0.0
@@ -6,6 +6,8 @@ export LC_ALL="zh_CN.UTF-8"
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
+
+export GOPATH="/d/sunday/workspace/mstar/develop/Code/Server:/d/sunday/workspace/mstar/develop/Code/Server_Engine"
 
 /usr/bin/fcitx
 /usr/bin/emacs
