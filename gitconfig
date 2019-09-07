@@ -26,7 +26,7 @@
 [branch]
   autosetuprebase = always
 [http]
-  postBuffer = 524288000
+  postBuffer = 824288000
 [pager]
   branch = false
 [alias]

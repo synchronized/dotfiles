@@ -12,12 +12,9 @@ opt_install_fzf=1
 opt_install_nvm=2
 opt_install_nvm_pkg=2
 opt_install_gvm=2
-opt_install_autoenv=2
-
-shells="bash zsh fish"
-prefix='~/.fzf'
-prefix_expand=~/.fzf
-fish_dir=${XDG_CONFIG_HOME:-$HOME/.config}/fish
+opt_install_pyenv=2
+opt_install_omf=2
+opt_install_omf_pkg=2
 
 help() {
     cat << EOF
@@ -33,7 +30,9 @@ usage: $0 [OPTIONS]
     --[no-]install-nvm-pkg  Enable/disable the installation nvm packages
                             js-beautify, eslint, tern, vmd
     --[no-]install-gvm      Enable/disable the installation gvm
-    --[no-]install-autoenv  Enable/disable the installation autoenv
+    --[no-]install-pyenv    Enable/disable the installation pyenv
+    --[no-]install-omf      Enable/disable the installation oh-my-fish
+    --[no-]install-omf-pkg  Enable/disable the installation oh-my-fish packages
 EOF
 }
 
@@ -49,7 +48,9 @@ for opt in "$@"; do
             opt_install_nvm=1
             opt_install_nvm_pkg=1
             opt_install_gvm=1
-            opt_install_autoenv=1
+            opt_install_pyenv=1
+            opt_install_omf=1
+            opt_install_omf_pkg=1
             ;;
         --dot-files)           opt_dotfiles=1         ;;
         --no-dot-files)        opt_dotfiles=0         ;;
@@ -61,8 +62,12 @@ for opt in "$@"; do
         --no-install-nvm-pkg)  opt_install_nvm_pkg=0  ;;
         --install-gvm)         opt_install_gvm=1      ;;
         --no-install-gvm)      opt_install_gvm=0      ;;
-        --install-autoenv)     opt_install_autoenv=1  ;;
-        --no-install-autoenv)  opt_install_autoenv=0  ;;
+        --install-pyenv)       opt_install_pyenv=1    ;;
+        --no-install-pyenv)    opt_install_pyenv=0    ;;
+        --install-omf)         opt_install_omf=1      ;;
+        --no-install-omf)      opt_install_omf=0      ;;
+        --install-omf-pkg)     opt_install_omf_pkg=1  ;;
+        --no-install-omf-pkg)  opt_install_omf_pkg=0  ;;
         *)
             echo "unknown option: $opt"
             help
@@ -200,16 +205,39 @@ else
     echo "    ~ Skipped"
 fi
 
-# Install autoenv
-sd_ask_var $opt_install_autoenv "Do you want to install autoenv?"
-opt_install_autoenv=$?
-if [ $opt_install_autoenv -eq 1 ]; then
-    echo "Install autoenv ..."
-    if [ ! -d "${HOME}/.autoenv" ]; then
-        git clone git://github.com/kennethreitz/autoenv.git ${HOME}/.autoenv
+# Install pyenv
+sd_ask_var $opt_install_pyenv "Do you want to install pyenv?"
+opt_install_pyenv=$?
+if [ $opt_install_pyenv -eq 1 ]; then
+    echo "Install pyenv ..."
+    if [ ! -d "${HOME}/.pyenv" ]; then
+        git clone https://github.com/pyenv/pyenv.git ${HOME}/.pyenv
     else
         echo "    - Already exists"
     fi
+else
+    echo "    ~ Skipped"
+fi
+
+# Install oh-my-fish
+sd_ask_var $opt_install_omf "Do you want to install oh-my-fish?"
+opt_install_omf=$?
+if [ $opt_install_omf -eq 1 ]; then
+    echo "Install oh-my-fish ..."
+    if [ ! -d "${HOME}/.local/share/omf" ]; then
+        curl -L https://get.oh-my.fish | fish
+    else
+        echo "    - Already exists"
+    fi
+else
+    echo "    ~ Skipped"
+fi
+
+# Install oh-my-fish config
+sd_ask_var $opt_install_omf_pkg "Do you want to install oh-my-fish config?"
+opt_install_omf_pkg=$?
+if [ $opt_install_omf_pkg -eq 1 ]; then
+    omf install https://github.com/synchronized/omf-config.git
 else
     echo "    ~ Skipped"
 fi
