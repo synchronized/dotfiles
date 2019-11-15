@@ -1,44 +1,45 @@
 [user]
-  name = sunday
-  email = synchronized@yeah.net
+	name = sunday
+	email = synchronized@yeah.net
 [core]
-  editor = vim
-  safecrlf = warn
-  autocrlf = input
+	editor = vim
+	safecrlf = warn
+	autocrlf = input
 	pager = less -x1,5
+	quotepath = false
 [push]
-  default = simple
+	default = simple
 [pull]
-  rebase = true
+	rebase = true
 
 [merge]
-  tool = meld
-  renormalize = true
-  conflictstyle = diff3
+	tool = meld
+	renormalize = true
+	conflictstyle = diff3
 [mergetool "meld"]
-  cmd = meld $LOCAL $BASE $REMOTE --output=$MERGED --auto-merge
+	cmd = meld $LOCAL $BASE $REMOTE --output=$MERGED --auto-merge
 
 [diff]
-  tool = meld
+	tool = meld
 [difftool "meld"]
-  cmd = meld "$LOCAL" "$REMOTE"
+	cmd = meld "$LOCAL" "$REMOTE"
 
 [branch]
-  autosetuprebase = always
+	autosetuprebase = always
 [http]
-  postBuffer = 824288000
+	postBuffer = 824288000
 [pager]
-  branch = false
+	branch = false
 [alias]
-  last = log -1 --stat
-  cp = cherry-pick
-  co = checkout
-  cl = clone
-  ci = commit
-  st = status -sb
-  br = branch
-  unstage = reset HEAD --
-  dc = diff --cached
-  lm = log --merge --decorate --source -p
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	st = status -sb
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	lm = log --merge --decorate --source -p
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
 
