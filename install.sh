@@ -212,6 +212,8 @@ if [ $opt_install_pyenv -eq 1 ]; then
     echo "Install pyenv ..."
     if [ ! -d "${HOME}/.pyenv" ]; then
         git clone https://github.com/pyenv/pyenv.git ${HOME}/.pyenv
+        eval "$(pyenv init -)"
+        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
     else
         echo "    - Already exists"
     fi

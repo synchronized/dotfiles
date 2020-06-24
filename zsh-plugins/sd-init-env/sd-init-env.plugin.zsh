@@ -10,6 +10,13 @@
 # fzf configuration
 [[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
+# pyenv configuration
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# direnv configuration
+eval "$(direnv hook zsh)"
+
 # alias
 # alias ping='prettyping --nolegend'
 alias emacs-prelude='emacs -q -l ~/.emacs.d-prelude/init.el'

@@ -14,5 +14,10 @@ export GTAGSLABEL=pygments
 # export PERL_MB_OPT="--install_base \"${PERL5_LOCAL_HOME}\""
 # export PERL_MM_OPT="INSTALL_BASE=${PERL5_LOCAL_HOME}"
 
+# pyenv configuration
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+
+
 # load local zshenv file
 # [[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
