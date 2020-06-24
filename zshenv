@@ -14,12 +14,5 @@ export GTAGSLABEL=pygments
 # export PERL_MB_OPT="--install_base \"${PERL5_LOCAL_HOME}\""
 # export PERL_MM_OPT="INSTALL_BASE=${PERL5_LOCAL_HOME}"
 
-# autoenv enable leave
-export AUTOENV_ENABLE_LEAVE=ON
-
-# rvm configuration
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-[[ -d "$HOME/.rvm/bin" ]] && export PATH="${PATH}:${HOME}/.rvm/bin"
-
 # load local zshenv file
-[[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
+# [[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
