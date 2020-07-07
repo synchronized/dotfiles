@@ -13,6 +13,7 @@ opt_install_nvm=2
 opt_install_nvm_pkg=2
 opt_install_gvm=2
 opt_install_pyenv=2
+opt_install_plenv=0
 opt_install_omf=2
 opt_install_omf_pkg=2
 
@@ -31,6 +32,7 @@ usage: $0 [OPTIONS]
                             js-beautify, eslint, tern, vmd
     --[no-]install-gvm      Enable/disable the installation gvm
     --[no-]install-pyenv    Enable/disable the installation pyenv
+    --[no-]install-plenv    Enable/disable the installation plenv
     --[no-]install-omf      Enable/disable the installation oh-my-fish
     --[no-]install-omf-pkg  Enable/disable the installation oh-my-fish packages
 EOF
@@ -64,6 +66,8 @@ for opt in "$@"; do
         --no-install-gvm)      opt_install_gvm=0      ;;
         --install-pyenv)       opt_install_pyenv=1    ;;
         --no-install-pyenv)    opt_install_pyenv=0    ;;
+        --install-plenv)       opt_install_plenv=1    ;;
+        --no-install-plenv)    opt_install_plenv=0    ;;
         --install-omf)         opt_install_omf=1      ;;
         --no-install-omf)      opt_install_omf=0      ;;
         --install-omf-pkg)     opt_install_omf_pkg=1  ;;
@@ -171,7 +175,7 @@ if [ $opt_install_nvm -eq 1 ]; then
             git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
         ) && \. "$NVM_DIR/nvm.sh"
         # Install default lts
-        nvm install --lts=Carbon
+        nvm install --lts=erbium
         nvm alias default node
     else
         echo "    - Already exists"
@@ -219,6 +223,20 @@ if [ $opt_install_pyenv -eq 1 ]; then
     fi
 else
     echo "    ~ Skipped"
+fi
+
+# Install plenv
+sd_ask_var $opt_install_plenv "Do you want to install plenv?"
+opt_install_plenv=$?
+if [ $opt_install_plenv -eq 1 ]; then
+  echo "Install plenv ..."
+  if [ ! -d "${HOME}/.plenv" ]; then
+    git clone https://github.com/tokuhirom/plenv.git ~/.plenv
+  else
+    echo "    - Already exists"
+  fi
+else
+  echo "    ~ Skipped"
 fi
 
 # Install oh-my-fish

@@ -11,8 +11,11 @@
 [[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # pyenv configuration
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+[[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv init -)"
+[[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
+
+# plenv configuration
+[[ -d "${HOME}/.plenv/bin" ]] && eval "$(plenv init -)"
 
 # direnv configuration
 eval "$(direnv hook zsh)"
