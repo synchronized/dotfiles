@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 
 " Colorschemes
 " Plug 'altercation/vim-colors-solarized'
-Plug 'ajh17/spacegray.vim'
+" Plug 'ajh17/spacegray.vim'
 
 " Syntax
 " Plug 'tpope/vim-git', { 'for': 'git' }
@@ -121,7 +121,7 @@ Plug 'vim-scripts/molokai'
 
 Plug 'maksimr/vim-jsbeautify'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Other plugins require curl
 if executable("curl")
