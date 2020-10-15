@@ -14,8 +14,6 @@ opt_install_nvm_pkg=2
 opt_install_gvm=2
 opt_install_pyenv=2
 opt_install_plenv=0
-opt_install_omf=2
-opt_install_omf_pkg=2
 
 help() {
     cat << EOF
@@ -33,8 +31,6 @@ usage: $0 [OPTIONS]
     --[no-]install-gvm      Enable/disable the installation gvm
     --[no-]install-pyenv    Enable/disable the installation pyenv
     --[no-]install-plenv    Enable/disable the installation plenv
-    --[no-]install-omf      Enable/disable the installation oh-my-fish
-    --[no-]install-omf-pkg  Enable/disable the installation oh-my-fish packages
 EOF
 }
 
@@ -51,8 +47,6 @@ for opt in "$@"; do
             opt_install_nvm_pkg=1
             opt_install_gvm=1
             opt_install_pyenv=1
-            opt_install_omf=1
-            opt_install_omf_pkg=1
             ;;
         --dot-files)           opt_dotfiles=1         ;;
         --no-dot-files)        opt_dotfiles=0         ;;
@@ -68,10 +62,6 @@ for opt in "$@"; do
         --no-install-pyenv)    opt_install_pyenv=0    ;;
         --install-plenv)       opt_install_plenv=1    ;;
         --no-install-plenv)    opt_install_plenv=0    ;;
-        --install-omf)         opt_install_omf=1      ;;
-        --no-install-omf)      opt_install_omf=0      ;;
-        --install-omf-pkg)     opt_install_omf_pkg=1  ;;
-        --no-install-omf-pkg)  opt_install_omf_pkg=0  ;;
         *)
             echo "unknown option: $opt"
             help
@@ -170,7 +160,7 @@ if [ $opt_install_nvm -eq 1 ]; then
     if [ ! -d "${NVM_DIR}" ]; then
         echo "Install nvm ..."
         (
-            git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+            git clone --depth 1 https://github.com/creationix/nvm.git "$NVM_DIR"
             cd "$NVM_DIR"
             git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
         ) && \. "$NVM_DIR/nvm.sh"
@@ -237,27 +227,4 @@ if [ $opt_install_plenv -eq 1 ]; then
   fi
 else
   echo "    ~ Skipped"
-fi
-
-# Install oh-my-fish
-sd_ask_var $opt_install_omf "Do you want to install oh-my-fish?"
-opt_install_omf=$?
-if [ $opt_install_omf -eq 1 ]; then
-    echo "Install oh-my-fish ..."
-    if [ ! -d "${HOME}/.local/share/omf" ]; then
-        curl -L https://get.oh-my.fish | fish
-    else
-        echo "    - Already exists"
-    fi
-else
-    echo "    ~ Skipped"
-fi
-
-# Install oh-my-fish config
-sd_ask_var $opt_install_omf_pkg "Do you want to install oh-my-fish config?"
-opt_install_omf_pkg=$?
-if [ $opt_install_omf_pkg -eq 1 ]; then
-    omf install https://github.com/synchronized/omf-config.git
-else
-    echo "    ~ Skipped"
 fi
