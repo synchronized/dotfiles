@@ -179,7 +179,7 @@ sd_ask_var $opt_install_nvm_pkg "Do you want to install nvm-pkg(js-beautify esli
 opt_install_nvm_pkg=$?
 if [ $opt_install_nvm_pkg -eq 1 ]; then
     echo "Install nvm-pkg(js-beautify eslint tern vmd) ..."
-
+    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
     npm install -g js-beautify eslint tern vmd
 else
     echo "    ~ Skipped"
