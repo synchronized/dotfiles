@@ -9,3 +9,5 @@ vim -E -s <<-EOF
     :PlugClean
     :qa
 EOF
+
+echo "Updating/cleaning Vim plugins: complete"
