@@ -18,7 +18,7 @@
 [[ -d "${HOME}/.plenv/bin" ]] && eval "$(plenv init -)"
 
 # direnv configuration
-eval "$(direnv hook zsh)"
+direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 # alias
 # alias ping='prettyping --nolegend'
