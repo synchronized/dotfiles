@@ -338,6 +338,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
       '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
         ("org-cn"   . "http://elpa.emacs-china.org/org/")
         ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; (setq configuration-layer-elpa-archives
+  ;;     '(("melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+  ;;       ("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+  ;;       ("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+
 
   ;; magit configure
   (setq-default git-magit-status-fullscreen t)
