@@ -17,6 +17,13 @@
 # plenv configuration
 [[ -d "${HOME}/.plenv/bin" ]] && eval "$(plenv init -)"
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#install:
+#     proxychains curl -s "https://get.sdkman.io" > sdkman
+#     proxychains bash sdkman
+export SDKMAN_DIR="/home/sunday/.sdkman"
+[[ -s "/home/sunday/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sunday/.sdkman/bin/sdkman-init.sh"
+
 # direnv configuration
 direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
