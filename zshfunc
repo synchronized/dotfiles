@@ -1,0 +1,19 @@
+
+
+# @param source
+# @param test
+# @return 1:不存在, 0:存在
+function sd_not_exist()
+{
+    src=$1
+    search=$2
+
+    srclist=$(echo $src | sed 's/:/ /g')
+    for str in $srclist
+    do
+        if [ $search = $str ]; then
+            return 1
+        fi
+    done
+    return 0
+}
