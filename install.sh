@@ -97,12 +97,15 @@ sd_ask_var() {
 }
 
 function sd_create_link() {
-    ORIGIN_PATH=$1
+    ORIGIN_NAME=$1
     TARGET_PATH=$2
-    TARGET_PREFIX=$HOME
-    echo -n "link ${TARGET_PREFIX}/${TARGET_PATH} to ${ORIGIN_PATH}..."
-    if [ ! -e "${TARGET_PREFIX}/${TARGET_PATH}" ]; then
-        ln -s ${CURR_PATH}/${ORIGIN_PATH} ${TARGET_PREFIX}/${TARGET_PATH}
+    TARGET_PREFIX=${HOME}/
+    TARGET_PATH_FULL=${HOME}/${TARGET_PATH}
+    ORIGIN_FULLPATH=${CURR_PATH}/${ORIGIN_NAME}
+    ORIGIN_PATH=${ORIGIN_FULLPATH#${TARGET_PREFIX}}
+    echo -n "link ${TARGET_PATH_FULL} to ${ORIGIN_PATH}..."
+    if [ ! -e "${TARGET_PATH_FULL}" ]; then
+        ln -s ${ORIGIN_PATH} ${TARGET_PATH_FULL}
         echo "+ Added"
     else
         echo "- Already exists"
