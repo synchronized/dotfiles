@@ -168,7 +168,7 @@ if [ $opt_install_nvm -eq 1 ]; then
             git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
         ) && \. "$NVM_DIR/nvm.sh"
         # Install default lts
-        nvm install --lts=erbium
+        nvm install --lts=gallium
         nvm alias default node
     else
         echo "    - Already exists"
@@ -216,18 +216,4 @@ if [ $opt_install_pyenv -eq 1 ]; then
     fi
 else
     echo "    ~ Skipped"
-fi
-
-# Install plenv
-sd_ask_var $opt_install_plenv "Do you want to install plenv?"
-opt_install_plenv=$?
-if [ $opt_install_plenv -eq 1 ]; then
-  echo "Install plenv ..."
-  if [ ! -d "${HOME}/.plenv" ]; then
-    git clone https://github.com/tokuhirom/plenv.git ~/.plenv
-  else
-    echo "    - Already exists"
-  fi
-else
-  echo "    ~ Skipped"
 fi
