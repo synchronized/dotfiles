@@ -85,7 +85,7 @@ sd_ask() {
 
 # @param string var($1)   current flag value
 # @param string msg($2)   when query user show message
-sd_ask_var() {
+function sd_ask_var() {
     local tmp_flag=$1
     local tmp_msg="$2"
     if [ $tmp_flag -eq 2 ]; then
