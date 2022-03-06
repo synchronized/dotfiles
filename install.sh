@@ -103,9 +103,21 @@ function sd_create_link() {
     TARGET_PATH_FULL=${HOME}/${TARGET_PATH}
     ORIGIN_FULLPATH=${CURR_PATH}/${ORIGIN_NAME}
     ORIGIN_PATH=${ORIGIN_FULLPATH#${TARGET_PREFIX}}
-    echo -n "link ${TARGET_PATH_FULL} to ${ORIGIN_PATH}..."
+    echo -n "link ${TARGET_PATH_FULL} to ${ORIGIN_PATH}... "
     if [ ! -e "${TARGET_PATH_FULL}" ]; then
         ln -s ${ORIGIN_PATH} ${TARGET_PATH_FULL}
+        echo "+ Added"
+    else
+        echo "- Already exists"
+    fi
+}
+
+function sd_copy_file() {
+    ORIGIN_PATH=$1
+    TARGET_PATH_FULL=$2
+    echo -n "copy ${ORIGIN_PATH} to ${TARGET_PATH_FULL}... "
+    if [ ! -e "${TARGET_PATH_FULL}" ]; then
+        cp ${ORIGIN_PATH} ${TARGET_PATH_FULL}
         echo "+ Added"
     else
         echo "- Already exists"
@@ -126,13 +138,14 @@ if [ $opt_dotfiles -eq 1 ]; then
     sd_create_link zshrc .zshrc
     sd_create_link zshenv .zshenv
     sd_create_link tmux.conf .tmux.conf
-    sd_create_link spacemacs .spacemacs
     sd_create_link gitconfig .gitconfig
     sd_create_link globalrc .globalrc
     sd_create_link latexmkrc .latexmkrc
 
     sd_create_link vim .vim
     sd_create_link editorconfig .editorconfig
+
+    sd_copy_file spacemacs ${HOME}/.spacemacs
 else
     echo "    ~ Skipped"
 fi
@@ -209,8 +222,7 @@ if [ $opt_install_pyenv -eq 1 ]; then
     echo "Install pyenv ..."
     if [ ! -d "${HOME}/.pyenv" ]; then
         git clone https://github.com/pyenv/pyenv.git ${HOME}/.pyenv
-        eval "$(pyenv init -)"
-        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+        git clone https://github.com/pyenv/pyenv-virtualenv.git ${HOME}/.pyenv/plugins/pyenv-virtualenv
     else
         echo "    - Already exists"
     fi
