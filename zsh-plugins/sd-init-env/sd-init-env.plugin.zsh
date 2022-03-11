@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-[[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
-
 # nvm configuration
 # This loads nvm
 [[ -s "${HOME}/.nvm/nvm.sh" ]] && source "${HOME}/.nvm/nvm.sh"
