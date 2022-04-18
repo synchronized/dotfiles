@@ -22,9 +22,13 @@ fi
 
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && export PATH="${HOME}/.pyenv/bin:$PATH"
+[[ -d "${HOME}/.pyenv/shims" ]] && export PATH="${HOME}/.pyenv/shims:$PATH"
 
 # plenv configuration
 [[ -d "${HOME}/.plenv/bin" ]] && export PATH="${HOME}/.plenv/bin:$PATH"
 
 # load local zshenv file
 [[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
+
+export GPG_TTY=$(tty)
+export GPG_AGENT_INFO=`gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n ::`
