@@ -20,6 +20,9 @@ if sd_not_exist $PATH "${HOME}/.local/bin"; then
   [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"
 fi
 
+# git-fuzzy configuration
+[[ -f "${HOME}/.dotfiles/git-fuzzy/bin/git-fuzzy" ]] && export PATH="${HOME}/.dotfiles/git-fuzzy/bin:$PATH"
+
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && export PATH="${HOME}/.pyenv/bin:$PATH"
 [[ -d "${HOME}/.pyenv/shims" ]] && export PATH="${HOME}/.pyenv/shims:$PATH"
