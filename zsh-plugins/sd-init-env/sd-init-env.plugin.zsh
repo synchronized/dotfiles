@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # nvm configuration
-# This loads nvm
 [[ -s "${HOME}/.nvm/nvm.sh" ]] && source "${HOME}/.nvm/nvm.sh"
 
 # gvm configuration
@@ -16,6 +15,9 @@
 
 # plenv configuration
 [[ -d "${HOME}/.plenv/bin" ]] && eval "$(plenv init -)"
+
+# jenv configuration
+[[ -d "${HOME}/.jenv/bin" ]] && eval "$(jenv init -)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #install:

@@ -30,6 +30,9 @@ fi
 # plenv configuration
 [[ -d "${HOME}/.plenv/bin" ]] && export PATH="${HOME}/.plenv/bin:$PATH"
 
+# jenv configuration
+[[ -d "${HOME}/.jenv/bin" ]] && export PATH="$HOME/.jenv/bin:$PATH"
+
 # load local zshenv file
 [[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
 
