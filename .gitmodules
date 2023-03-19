@@ -1,8 +1,8 @@
 [submodule "thirdpart/antigen"]
 	path = thirdpart/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "git-fuzzy"]
-	path = git-fuzzy
+[submodule "thirdpart/git-fuzzy"]
+	path = thirdpart/git-fuzzy
 	url = https://github.com/bigH/git-fuzzy.git
 [submodule "thirdpart/z.lua"]
 	path = thirdpart/z.lua
