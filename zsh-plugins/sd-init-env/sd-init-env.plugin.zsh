@@ -19,6 +19,9 @@
 # jenv configuration
 [[ -d "${HOME}/.jenv/bin" ]] && eval "$(jenv init -)"
 
+# z.lua configuration
+[[ -d "${HOME}/.dotfiles/thirdpart/z.lua" ]] && eval "$(lua ${HOME}/.dotfiles/thirdpart/z.lua/z.lua --init zsh)"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #install:
 #     proxychains curl -s "https://get.sdkman.io" > sdkman

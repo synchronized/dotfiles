@@ -4,3 +4,6 @@
 [submodule "git-fuzzy"]
 	path = git-fuzzy
 	url = https://github.com/bigH/git-fuzzy.git
+[submodule "thirdpart/z.lua"]
+	path = thirdpart/z.lua
+	url = https://github.com/skywind3000/z.lua.git

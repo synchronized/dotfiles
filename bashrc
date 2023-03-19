@@ -42,3 +42,6 @@ fi
 
 # jenv configuration
 [[ -d "${HOME}/.jenv/bin" ]] && eval "$(jenv init -)"
+
+# z.lua configuration
+[[ -d "${HOME}/.dotfiles/thirdpart/z.lua" ]] && eval "$(lua ${HOME}/.dotfiles/thirdpart/z.lua/z.lua --init zsh)"

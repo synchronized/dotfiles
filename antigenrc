@@ -5,7 +5,7 @@ antigen bundles <<EOBUNDLES
     # cp
     # wd
     # svn
-    z
+    # z
     git
     # sudo
     rsync
