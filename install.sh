@@ -103,11 +103,20 @@ function sd_ask_var() {
 function sd_create_link() {
     ORIGIN_NAME=$1
     TARGET_PATH=$2
+    ABS_PATH=${3-}
     TARGET_PREFIX=${HOME}/
     TARGET_PATH_FULL=${HOME}/${TARGET_PATH}
     ORIGIN_FULLPATH=${CURR_PATH}/${ORIGIN_NAME}
-    ORIGIN_PATH=${ORIGIN_FULLPATH#${TARGET_PREFIX}}
+    if [ "$ABS_PATH" = "true" ]; then
+        ORIGIN_PATH=${ORIGIN_FULLPATH}
+    else
+        ORIGIN_PATH=${ORIGIN_FULLPATH#${TARGET_PREFIX}}
+    fi
     echo -n "link ${TARGET_PATH_FULL} to ${ORIGIN_PATH}... "
+    TARGET_DIR=$(dirname ${TARGET_PATH_FULL})
+    if [ ! -e "${TARGET_DIR}" ]; then
+        mkdir -p "${TARGET_DIR}"
+    fi
     if [ ! -e "${TARGET_PATH_FULL}" ]; then
         ln -s ${ORIGIN_PATH} ${TARGET_PATH_FULL}
         echo "+ Added"
@@ -144,7 +153,6 @@ if [ $opt_dotfiles -eq 1 ]; then
     sd_create_link gitignore .gitignore
     sd_create_link globalrc .globalrc
     sd_create_link latexmkrc .latexmkrc
-
     sd_create_link vim .vim
     sd_create_link editorconfig .editorconfig
 else
