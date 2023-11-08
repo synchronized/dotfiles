@@ -33,6 +33,9 @@ fi
 # jenv configuration
 [[ -d "${HOME}/.jenv/bin" ]] && export PATH="$HOME/.jenv/bin:$PATH"
 
+# doom emacs configuration
+[[ -d "${HOME}/.config/emacs/bin" ]] && export PATH="${HOME}/.config/emacs/bin:$PATH"
+
 # load local zshenv file
 [[ -f "${HOME}/.zshenv.local" ]] && . "${HOME}/.zshenv.local"
 
