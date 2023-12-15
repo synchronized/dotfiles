@@ -387,3 +387,6 @@ set exrc
 set secure
 
 set fileencodings=utf-8,gbk
+
+" 解决 windows 上 git bash vim 闪屏问题
+set t_vb=
