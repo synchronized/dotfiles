@@ -36,3 +36,8 @@ direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 # alias ping='prettyping --nolegend'
 alias emacs-prelude='emacs -q -l ~/.emacs.d-prelude/init.el'
 alias emacs-mytest='emacs -q -l ~/.emacs.d-mytest/init.el'
+
+fgd() {
+    preview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
