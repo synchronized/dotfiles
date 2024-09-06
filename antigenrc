@@ -23,8 +23,12 @@ antigen bundles <<EOBUNDLES
     # Extra zsh completions
     zsh-users/zsh-completions
 
+    wfxr/forgit
+    mrjohannchang/zsh-interactive-cd
+
     # My config
     synchronized/sd-config
+
 
     ${HOME}/.dotfiles/zsh-plugins/sd-init-env --no-local-clone
 
