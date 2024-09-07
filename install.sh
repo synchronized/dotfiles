@@ -148,6 +148,7 @@ opt_dotfiles=$?
 if [ $opt_dotfiles -eq 1 ]; then
     sd_create_link zshrc .zshrc
     sd_create_link zshenv .zshenv
+    sd_create_link zsh .zsh
     sd_create_link tmux.conf .tmux.conf
     sd_create_link gitconfig .gitconfig
     sd_create_link gitignore .gitignore

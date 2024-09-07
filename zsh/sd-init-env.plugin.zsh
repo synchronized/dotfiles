@@ -1,13 +1,13 @@
 #!/bin/zsh
 
+# fzf configuration
+[[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
+
 # nvm configuration
 [[ -s "${HOME}/.nvm/nvm.sh" ]] && source "${HOME}/.nvm/nvm.sh"
 
 # gvm configuration
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
-
-# fzf configuration
-[[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv init -)"
@@ -18,16 +18,6 @@
 
 # jenv configuration
 [[ -d "${HOME}/.jenv/bin" ]] && eval "$(jenv init -)"
-
-# z.lua configuration
-[[ -d "${HOME}/.dotfiles/thirdpart/z.lua" ]] && eval "$(lua ${HOME}/.dotfiles/thirdpart/z.lua/z.lua --init zsh)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#install:
-#     proxychains curl -s "https://get.sdkman.io" > sdkman
-#     proxychains bash sdkman
-export SDKMAN_DIR="/home/sunday/.sdkman"
-[[ -s "/home/sunday/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sunday/.sdkman/bin/sdkman-init.sh"
 
 # direnv configuration
 direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
