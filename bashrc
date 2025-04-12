@@ -15,7 +15,7 @@ fi
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && export PATH="${HOME}/.pyenv/bin:$PATH"
 [[ -d "${HOME}/.pyenv/shims" ]] && export PATH="${HOME}/.pyenv/shims:$PATH"
-[[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
+#[[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
 
 # jenv configuration
 [[ -d "${HOME}/.jenv/bin" ]] && export PATH="$HOME/.jenv/bin:$PATH"
