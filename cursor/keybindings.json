@@ -1,0 +1,192 @@
+// Place your key bindings in this file to override the defaults
+[
+    //删除默认快捷键(vscode)
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    //删除默认快捷键(cursor)
+    {
+        "key": "ctrl+l",
+        "command": "-aichat.newchataction"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-composer.sendToAgent",
+        "when": "editorHasPromptBar && editorPromptBarFocused"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-composer.createNewWithPrevContext",
+        "when": "agentsPaneFocused && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus || composerFocused && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus || !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus && activeEditor == 'workbench.editor.composer' || !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus && focusedView =~ /^workbench.panel.aichat.view/ || auxiliaryBarFocus && cursor.agentIdeUnification.enabled && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus"
+    },
+
+    //覆盖默认快捷键(vscode)
+    {
+        "key": "alt+v ctrl+n",
+        "command": "workbench.action.files.newUntitledFile"
+    },
+
+    //覆盖默认快捷键(cursor)
+    {
+        "key": "alt+c ctrl+l",
+        "command": "composer.sendToAgent",
+        "when": "editorHasPromptBar && editorPromptBarFocused"
+    },
+    {
+        "key": "alt+c ctrl+n",
+        "command": "composer.createNewWithPrevContext",
+        "when": "agentsPaneFocused && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus || composerFocused && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus || !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus && activeEditor == 'workbench.editor.composer' || !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus && focusedView =~ /^workbench.panel.aichat.view/ || auxiliaryBarFocus && cursor.agentIdeUnification.enabled && !editorTextFocus && !explorerViewletFocus && !filesExplorerFocus"
+    },
+
+    //新增快捷键
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen && neovim.mode != 'cmdline'"
+    },
+    
+
+    //sidebar 获得焦点 ctrl+g 关闭sidebar
+    {
+        "key": "ctrl+g",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "sideBarFocus"
+    },
+	//sidebar 获得焦点 escape 光标跳转到文本编辑器
+    {
+        "key": "escape",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus"
+    },
+	//pannel 获得焦点 ctrl+g 关闭pannel
+    {
+        "key": "ctrl+g",
+  		"command": "workbench.action.closePanel",
+        "when": "panelFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-aipopup.action.modal.generate",
+        "when": "editorFocus && !composerBarIsVisible"
+    },
+    
+    {
+        "key": "space",
+        "command": "whichkey.show",
+        "when": "editorTextFocus && (neovim.mode == 'normal')"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "focusNextRenameSuggestion",
+        "when": "renameInputVisible"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "list.focusDown",
+        "when": "inReferenceSearchEditor && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "list.focusDown",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "showNextParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.p && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert.p && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "focusPreviousRenameSuggestion",
+        "when": "renameInputVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "inReferenceSearchEditor && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "showPrevParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "file-browser.stepOut",
+        "when": "inFileBrowser"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "file-browser.stepIn",
+        "when": "inFileBrowser"
+    },
+
+    // like tmux window nav
+    {
+        "key": "ctrl+a k",
+        "command": "workbench.action.navigateUp",
+        "when": "editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+a j",
+        "command": "workbench.action.navigateDown",
+        "when": "editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+a h",
+        "command": "workbench.action.navigateLeft",
+        "when": "editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+a l",
+        "command": "workbench.action.navigateRight",
+        "when": "editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    
+]
