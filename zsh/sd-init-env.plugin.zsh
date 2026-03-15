@@ -12,13 +12,16 @@ export NVM_DIR="$HOME/.nvm"
 [[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv init -)"
 [[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
 
+# golang version manager configuration
+# Check if the alias 'g' exists before trying to unalias it
+if [[ -n $(alias g 2>/dev/null) ]]; then
+	unalias g
+fi
+[ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env" # g shell setup
+
 # direnv configuration
 direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
-# alias
-# alias ping='prettyping --nolegend'
-alias emacs-prelude='emacs -q -l ~/.emacs.d-prelude/init.el'
-alias emacs-mytest='emacs -q -l ~/.emacs.d-mytest/init.el'
 
 fgd() {
     preview="git diff $@ --color=always -- {-1}"

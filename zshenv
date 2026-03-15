@@ -41,3 +41,8 @@ fi
 
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=`gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n ::`
+
+
+export LC_ALL=en_US.UTF-8
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890

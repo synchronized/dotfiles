@@ -12,7 +12,7 @@ alias grep='grep --color=auto'
 
 . "${HOME}/.dotfiles/zshfunc"
 if sd_not_exist $PATH "${HOME}/.local/bin"; then
-  [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"
+	[[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"
 fi
 
 # fzf configuration
@@ -20,17 +20,22 @@ fi
 
 # nvm configuration
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_compl
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_compl
 
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && export PATH="${HOME}/.pyenv/bin:$PATH"
 [[ -d "${HOME}/.pyenv/shims" ]] && export PATH="${HOME}/.pyenv/shims:$PATH"
 #[[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
 
+# golang version manager configuration
+# Check if the alias 'g' exists before trying to unalias it
+if [[ -n $(alias g 2>/dev/null) ]]; then
+	unalias g
+fi
+[ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env" # g shell setup
 
 export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 export LC_ALL=en_US.UTF-8
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
-
