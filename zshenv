@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 export EDITOR=vim

@@ -4,20 +4,13 @@
 [[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # nvm configuration
-[[ -s "${HOME}/.nvm/nvm.sh" ]] && source "${HOME}/.nvm/nvm.sh"
-
-# gvm configuration
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_compl
 
 # pyenv configuration
 [[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv init -)"
 [[ -d "${HOME}/.pyenv/bin" ]] && eval "$(pyenv virtualenv-init -)"
-
-# plenv configuration
-[[ -d "${HOME}/.plenv/bin" ]] && eval "$(plenv init -)"
-
-# jenv configuration
-[[ -d "${HOME}/.jenv/bin" ]] && eval "$(jenv init -)"
 
 # direnv configuration
 direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
