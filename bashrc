@@ -37,5 +37,6 @@ fi
 
 export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 export LC_ALL=en_US.UTF-8
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
+
+# WSL2 代理配置
+grep -qi microsoft /proc/version 2>/dev/null && [ -f ~/.dotfiles/wsl/proxy.sh ] && source ~/.dotfiles/wsl/proxy.sh

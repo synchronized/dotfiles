@@ -27,3 +27,8 @@ fgd() {
     preview="git diff $@ --color=always -- {-1}"
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
+
+export GPG_TTY=$(tty)
+export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent:$(gpgconf --list-dirs agent-extra-socket):1"
+
+grep -qi microsoft /proc/version 2>/dev/null && [[ -f ~/.dotfiles/wsl/proxy.sh ]] && source ~/.dotfiles/wsl/proxy.sh
