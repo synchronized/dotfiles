@@ -22,7 +22,6 @@ zplug "mrjohannchang/zsh-interactive-cd", defer:1
 #zplug 'wfxr/forgit'
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
-zplug "bigH/git-fuzzy", as:command, use:"bin/git-fuzzy", depth:1
 
 # Load theme file
 zplug 'dracula/zsh', as:theme
