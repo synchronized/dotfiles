@@ -28,4 +28,4 @@ fgd() {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-grep -qi microsoft /proc/version 2>/dev/null && [[ -f ~/.dotfiles/wsl/proxy.sh ]] && source ~/.dotfiles/wsl/proxy.sh
+[[ -f ~/.dotfiles/wsl/proxy.sh ]] && source ~/.dotfiles/wsl/proxy.sh
