@@ -39,4 +39,4 @@ export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 export LC_ALL=en_US.UTF-8
 
 # WSL2 代理配置
-grep -qi microsoft /proc/version 2>/dev/null && [ -f ~/.dotfiles/wsl/proxy.sh ] && source ~/.dotfiles/wsl/proxy.sh
+[ -f ~/.dotfiles/proxy.sh ] && source ~/.dotfiles/proxy.sh

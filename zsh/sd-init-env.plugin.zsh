@@ -28,4 +28,4 @@ fgd() {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-[[ -f ~/.dotfiles/wsl/proxy.sh ]] && source ~/.dotfiles/wsl/proxy.sh
+[[ -f ~/.dotfiles/proxy.sh ]] && source ~/.dotfiles/proxy.sh

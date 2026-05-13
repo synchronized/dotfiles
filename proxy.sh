@@ -1,14 +1,9 @@
 #!/bin/bash
 
-setup_wsl_hostip() {
-    # 检测宿主机 IP
-    export HOSTIP=$(cat /etc/resolv.conf 2>/dev/null | grep nameserver | awk '{print $2}')
-}
-
 # 代理配置函数
 setup_proxy() {
     # 检测宿主机 IP
-    local host_ip=${1:-${HOSTIP}}
+    local host_ip=${1:-127.0.01}
 
     # 默认代理端口
     local proxy_port=${2:-7890}
