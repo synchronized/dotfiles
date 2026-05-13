@@ -8,6 +8,7 @@
 	pager = less -x1,5
 	quotepath = false
 	excludesFile = ~/.gitignore
+	bigFileThreshold = 50m
 [push]
 	default = simple
 [pull]
@@ -47,3 +48,6 @@
 
 [init]
 	defaultBranch = master
+[pack]
+	windowMemory = 2G
+	threads = 2
